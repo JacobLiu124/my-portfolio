@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif; /* nice modern font */
+  background: url('/background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #000000; /* text color */
+}
+
+a {
+  text-decoration: none;
+  color: rgb(8, 105, 89);
+}
+
