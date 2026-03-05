@@ -7,7 +7,7 @@ const PROFILE = {
   role:     'Software Engineer',
   tagline:  'I build things for the web.',
   bio:      `I'm a passionate software engineer with experience in building web applications using React, Node.js, and Python. I enjoy solving complex problems and creating intuitive user experiences. When I'm not coding, you can find me exploring the outdoors or experimenting with new recipes in the kitchen.`,
-  avatar:     'my-portfolio/public/profile.jpg',
+  avatar:     'assets/profile/profile.jpg', 
   links: [
     { label: 'GitHub',   href: 'https://https://github.com/JacobLiu124/JacobLiu124.com/' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/jacob-liu-1a40a9269/' },
@@ -41,7 +41,8 @@ const PROJECTS = [
 
 const CONTACT = {
   email:  'jacobliu2017@outlook.com',
-  blurb:  `Think I might be a good fit for your team? I would to connect and learn more about how I can contribute. I'm currently open to new opportunities, so feel free to reach out!`,
+  phone:  '0468 330 618',
+  blurb:  `Think I might be a good fit for your team? I would love to connect and learn more about how I can contribute towards your next project. I'm currently open to new opportunities, so feel free to reach out!`,
 }
 /* ─────────────────────────────────────────────── */
 
@@ -202,16 +203,15 @@ export default function Home() {
           <h2 className="contact-heading">Let's work together.</h2>
           <p className="contact-blurb">{CONTACT.blurb}</p>
 
-          <a href={`mailto:${CONTACT.email}`} className="contact-btn">
-            Say hello <span className="arrow">→</span>
-          </a>
-
-          <div className="contact-links">
-            {PROFILE.links.map(l => (
-              <a key={l.label} href={l.href} target="_blank" rel="noreferrer" className="contact-social">
-                {l.label}
-              </a>
-            ))}
+          <div className="contact-details">
+            <a href={`mailto:${CONTACT.email}`} className="contact-item">
+              <span className="contact-label mono">Email</span>
+              <span className="contact-value">{CONTACT.email}</span>
+            </a>
+            <a href={`tel:${CONTACT.phone}`} className="contact-item">
+              <span className="contact-label mono">Phone</span>
+              <span className="contact-value">{CONTACT.phone}</span>
+            </a>
           </div>
         </div>
       </section>
