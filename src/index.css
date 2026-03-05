@@ -1,13 +1,62 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Instrument+Sans:wght@300;400;500;600&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
   margin: 0;
-  font-family: 'Inter', sans-serif; /* nice modern font */
-  background: url('/background.jpg') no-repeat center center fixed;
-  background-size: cover;
-  color: #000000; /* text color */
+  padding: 0;
+}
+
+:root {
+  --bg:        #070707;
+  --surface:   #101010;
+  --border:    #1e1e1e;
+  --accent:    #c8ff57;
+  --accent-dim:#8bb33d;
+  --text:      #ededed;
+  --muted:     #555;
+  --muted-lt:  #888;
+
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-mono:    'JetBrains Mono', 'Courier New', monospace;
+  --font-body:    'Instrument Sans', sans-serif;
+
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--accent);
+  color: #000;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
 }
 
 a {
+  color: inherit;
   text-decoration: none;
-  color: rgb(8, 105, 89);
 }
-
