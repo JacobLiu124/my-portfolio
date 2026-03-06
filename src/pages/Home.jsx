@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 import './Home.css'
-
+import avatar from '../assets/profile/profile.jpg'
 /* ─── PLACEHOLDER DATA — replace with your own ─── */
 const PROFILE = {
   name:     'Jacob Liu',
   role:     'Software Engineer',
   tagline:  'I build things for the web.',
   bio:      `I'm a passionate software engineer with experience in building web applications using React, Node.js, and Python. I enjoy solving complex problems and creating intuitive user experiences. When I'm not coding, you can find me exploring the outdoors or experimenting with new recipes in the kitchen.`,
-  avatar:     'assets/profile/profile.jpg', 
+  avatar:     avatar,
   links: [
     { label: 'GitHub',   href: 'https://https://github.com/JacobLiu124/JacobLiu124.com/' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/jacob-liu-1a40a9269/' },
@@ -44,6 +44,7 @@ const CONTACT = {
   phone:  '0468 330 618',
   blurb:  `Think I might be a good fit for your team? I would love to connect and learn more about how I can contribute towards your next project. I'm currently open to new opportunities, so feel free to reach out!`,
 }
+
 /* ─────────────────────────────────────────────── */
 
 
@@ -112,6 +113,13 @@ export default function Home() {
   const heroRef                 = useRef(null)
   const projectsRef             = useFadeIn()
   const contactRef              = useFadeIn()
+  const [copied, setCopied] = useState(null)        // ← inside here
+
+  const copyToClipboard = (text, key) => {           // ← inside here
+    navigator.clipboard.writeText(text)
+    setCopied(key)
+    setTimeout(() => setCopied(null), 2000)
+  }
 
   /* show back-to-top after scrolling past hero */
   useEffect(() => {
@@ -122,6 +130,7 @@ export default function Home() {
 
   const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
 
+
   return (
     <div className="page">
 
@@ -130,7 +139,7 @@ export default function Home() {
         <div className="hero-noise" aria-hidden />
 
         <nav className="hero-nav">
-          <span className="logo mono">{`<${PROFILE.name.split(' ')[0]} />`}</span>
+          <span className="logo mono">{`<About Jacob Liu/>`}</span>
           <div className="nav-links">
             <a href="#projects">Work</a>
             <a href="#contact">Contact</a>
@@ -204,14 +213,16 @@ export default function Home() {
           <p className="contact-blurb">{CONTACT.blurb}</p>
 
           <div className="contact-details">
-            <a href={`mailto:${CONTACT.email}`} className="contact-item">
-              <span className="contact-label mono">Email</span>
+            <button onClick={() => copyToClipboard(CONTACT.email, 'email')} className="contact-item">
+              <span className="contact-label mono">Email: </span>
               <span className="contact-value">{CONTACT.email}</span>
-            </a>
-            <a href={`tel:${CONTACT.phone}`} className="contact-item">
-              <span className="contact-label mono">Phone</span>
+              <span className="contact-copy mono">{copied === 'email' ? '✓ copied!' : 'click to copy'}</span>
+            </button>
+            <button onClick={() => copyToClipboard(CONTACT.phone, 'phone')} className="contact-item">
+              <span className="contact-label mono">Phone: </span>
               <span className="contact-value">{CONTACT.phone}</span>
-            </a>
+              <span className="contact-copy mono">{copied === 'phone' ? '✓ copied!' : 'click to copy'}</span>
+            </button>
           </div>
         </div>
       </section>
@@ -230,7 +241,7 @@ export default function Home() {
         onClick={scrollTop}
         aria-label="Back to top"
       >
-        ↑ top
+        ↑ Back to Top
       </button>
 
     </div>
